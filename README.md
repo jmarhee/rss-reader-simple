@@ -2,6 +2,9 @@
 
 A simple YAML driven RSS reader.
 
+![homepage](home.png)
+![expanded-view](expanded.png)
+
 ## Setup
 
 Build the Docker image:
