@@ -41,9 +41,20 @@ feeds:
     - "https://thehuntfortomclancy.substack.com/feed"
     - "https://proteanmag.com/feed"
     - "https://computer.rip/rss.xml"
+ingress:
+  rules:
+    - host: "{{ .Values.fqdn }}"
+      http:
+        paths:
+          - path: /
+            pathType: Exact
+            backend:
+              service:
+                name:  rss-reader-service
+                port:
+                  number: 80
 ```
-
-customizing with your feeds and `sitename`, and apply:
+customizing with your feeds and `sitename`, and updating the ingress, and apply:
 
 ```bash
 helm install rss-reader ./
