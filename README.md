@@ -26,6 +26,30 @@ docker run -d \
 rss-reader
 ```
 
+## Deploying to Kubernetes
+
+In `chart/` create a `values.yaml` file:
+
+```yaml
+sitename: "reader.freeipad.internal"
+configpath: "/opt"
+feedpath: "/opt/feeds.yaml"
+fqdn: "reader.freeipad.internal"
+feeds:
+  feeds.yaml: |
+    feeds:
+    - "https://thehuntfortomclancy.substack.com/feed"
+    - "https://proteanmag.com/feed"
+    - "https://computer.rip/rss.xml"
+```
+
+customizing with your feeds and `sitename`, and apply:
+
+```bash
+helm install rss-reader ./
+```
+then navigate to your `fqdn` (assuming DNS is already configured for your Ingress).
+
 ## Configuration
 
 Add URLs to a YAML file:

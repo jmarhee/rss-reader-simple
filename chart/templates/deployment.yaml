@@ -22,9 +22,9 @@ spec:
         - containerPort: 80
         env:
         - name: HOST
-          value: {{ .Values.host }}
+          value: "0.0.0.0"
         - name: PORT
-          value: "{{ .Values.port }}"
+          value: "8888"
         - name: SITE_NAME
           value: {{ .Values.sitename }}
         - name: FEED_YAML_PATH
