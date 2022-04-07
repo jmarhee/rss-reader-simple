@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rss-reader-deployment
+  labels:
+    app: rss-reader
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rss-reader
+  template:
+    metadata:
+      labels:
+        app: rss-reader
+    spec:
+      containers:
+      - name: app
+        image: jmarhee/rss-freeipad-reader:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: HOST
+          value: {{ .Values.host }}
+        - name: PORT
+          value: "{{ .Values.port }}"
+        - name: SITE_NAME
+          value: {{ .Values.sitename }}
+        - name: FEED_YAML_PATH
+          value: {{ .Values.feedpath }}
+        volumeMounts:
+        - name: feeds
+          mountPath: {{ .Values.configpath }}
+          readOnly: true
+      volumes:
+      - name: feeds
+        configMap:
+          name: rss-reader-configmap
+          items:
+          - key: "feeds.yaml"
+            path: "feeds.yaml"

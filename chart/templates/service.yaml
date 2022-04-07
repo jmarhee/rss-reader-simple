@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rss-reader-service
+spec:
+  selector:
+    app: rss-reader
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: {{ .Values.port }}

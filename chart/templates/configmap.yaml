@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rss-reader-configmap
+data:
+{{- toYaml .Values.feeds | nindent 2}}
