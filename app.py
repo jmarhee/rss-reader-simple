@@ -2,8 +2,6 @@ from reader import buildFeed, buildConfig
 from flask import Flask, render_template
 import os
  
-headers = {'User-Agent': 'freeipad-reader'}
-
 app = Flask(__name__)
 
 @app.route('/')

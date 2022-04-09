@@ -6,10 +6,6 @@ import time
 import yaml
 
 headers = {'User-Agent': 'freeipad-reader'}
-
-# with open(os.environ['FEED_YAML_PATH']) as f:
-# 	dict = yaml.load(f, Loader=yaml.FullLoader)
-# 	feeds = dict['feeds']
  
 class ReadRss:
  
@@ -59,5 +55,4 @@ def buildFeed(feeds):
 			feed_body_item['article_body'] = feed.articles[int(e)]
 			new_feed['data'].append(feed_body_item)
 		feed_body.append(new_feed)
-	print(feed_body[1])
 	return feed_body
