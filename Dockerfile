@@ -7,7 +7,7 @@ ENV FEED_YAML_PATH ""
 # --mount source=feed.yaml,target=/
 
 COPY app.py /app.py
-COPY reader.py /reader.py
+COPY parser.py /parser.py
 COPY templates/* /templates/
 COPY requirements.txt /requirements.txt
 
