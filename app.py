@@ -8,7 +8,7 @@ app = Flask(__name__)
 def index():
 	feeds = buildConfig()
 	feeds_data = buildFeed(feeds)
-	if os.environ.get("SITE_NAME") is "":
+	if os.environ.get("SITE_NAME") == "":
 		site_name = "reader.freeipad.internal"
 	else:
 		site_name = os.environ['SITE_NAME']
