@@ -847,11 +847,13 @@ url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216
   </head>
 <body>
   <article id="c50efff6-cea6-469b-a98e-a4a8bf0a68be" class="page sans"><header><h1 class="page-title">{{ site_name }}</h1></header><div class="page-body">
-{% for item in feeds: %}
+{% for item in feed_data: %}
 <button type="button" class="collapsible">{{ item.feed }}</button>
 <div class="content">
-    {% for art in item.data %}
-    <p><ul><li><strong><a target="_blank"  href={{ art.urls }}>{{ art.titles }}</a></strong><sub> | {{ art.dates }}</sub><figure><div>{{ art.descriptions }}<br /><sub><a target="_blank"  href={{ art.urls }}>{{ art.urls }}</a></sub></div></figure></li></ul></sub><button type="button" id="button-article" class="collapsible">Open Article</button><div class="content-body">{{ art.article_body | safe }}</div>      
+    {% for article in item.data %}
+    {% for art in article.entries %}
+    <p><ul><li><strong><a target="_blank"  href={{ art.urls }}>{{ art.title }}</a></strong><sub> | {{ art.published }}</sub><figure><div>{{ art.summary | safe }}<br /><sub><a target="_blank"  href={{ art.link }}>{{ art.link }}</a></sub></div></figure></li></ul></sub>{% if art.content is defined %}<button type="button" id="button-article" class="collapsible">Open Article</button><div class="content-body">{{ art.content[0]['value'] | safe }}</div>{% endif %}      
+    {% endfor %}
     {% endfor %}
 </div>
 {% endfor %}
@@ -871,5 +873,3 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 </script> </body> 
-
-</html>

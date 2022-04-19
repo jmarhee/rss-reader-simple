@@ -1,4 +1,4 @@
-from reader import buildFeed, buildConfig
+from parser import buildFeed, buildConfig
 from flask import Flask, render_template
 import os
  
@@ -12,4 +12,4 @@ def index():
 		site_name = "reader.freeipad.internal"
 	else:
 		site_name = os.environ['SITE_NAME']
-	return render_template('index.html', feeds=feeds_data, site_name=site_name)
+	return render_template('index.html', feed_data=feeds_data, site_name=site_name)

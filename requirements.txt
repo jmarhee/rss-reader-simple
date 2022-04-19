@@ -1,5 +1,5 @@
 lxml
 requests
-beautifulsoup4
 flask
 pyyaml
+feedparser
