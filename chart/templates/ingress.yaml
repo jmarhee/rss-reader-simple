@@ -14,3 +14,10 @@ spec:
                 name:  rss-reader-service
                 port:
                   number: 80
+          - path: /browser
+            pathType: Prefix
+            backend:
+              service:
+                name:  rss-reader-service
+                port:
+                  number: 8080

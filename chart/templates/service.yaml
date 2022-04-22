@@ -9,3 +9,9 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: {{ .Values.port }}
+      name: "http-app"
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      name: "http-filebrowser"
+        
