@@ -33,11 +33,22 @@ spec:
         volumeMounts:
         - name: feeds
           mountPath: {{ .Values.configpath }}
-          readOnly: true
+          readOnly: false
+{{ if eq .Values.filebrower "enabled" }}
+      - name: app-filebrowser
+        image: hurlenko/filebrowser
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+        - name: FB_BASEURL
+          value: "/browser"
+        volumeMounts:
+        - name: feeds
+          mountPath: "/data"
+          readOnly: false
+{{ end }}
       volumes:
       - name: feeds
-        configMap:
-          name: rss-reader-configmap
-          items:
-          - key: "feeds.yaml"
-            path: "feeds.yaml"
+        persistentVolumeClaim:
+          claimName: rss-reader-pv-claim
