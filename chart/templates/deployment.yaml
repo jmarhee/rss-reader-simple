@@ -34,7 +34,7 @@ spec:
         - name: feeds
           mountPath: {{ .Values.configpath }}
           readOnly: false
-{{ if eq .Values.filebrower "enabled" }}
+{{ if eq .Values.filebrowser "enabled" }}
       - name: app-filebrowser
         image: hurlenko/filebrowser
         imagePullPolicy: Always
