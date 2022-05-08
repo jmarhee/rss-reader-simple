@@ -852,7 +852,7 @@ url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216
 <div class="content">
     {% for article in item.data %}
     {% for art in article.entries %}
-    <p><ul><li><strong><a target="_blank"  href={{ art.link }}>{{ art.title }}</a></strong><sub> | {{ art.published }}</sub><figure><div>{{ art.summary | safe }}<br /><sub><a target="_blank"  href={{ art.link }}>{{ art.link }}</a></sub></div></figure></li></ul></sub>{% if art.content is defined %}<button type="button" id="button-article" class="collapsible">Open Article</button><div class="content-body">{{ art.content[0]['value'] | safe }}</div>{% endif %}      
+    <p><ul><li><strong><a target="_blank"  href={{ art.link }}>{{ art.title }}</a></strong><sub> | {{ art.published }}</sub><figure><div>{{ art.summary | safe }}<br /><sub><a target="_blank"  href={{ art.link }}>{{ art.link }}</a></sub><br /><a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url={{ art.link | urlencode }}&title={{ art.title | urlencode }}&summary={{ art.summary | urlencode }}&source={{ item.feed | urlencode }}">Share on LinkedIn</a> | <a target="_blank" href="http://twitter.com/share?text={{ art.title }}&url={{ art.link | urlencode }}">Share on Twitter</a></div></figure></li></ul></sub>{% if art.content is defined %}<button type="button" id="button-article" class="collapsible">Open Article</button><div class="content-body">{{ art.content[0]['value'] | safe }}</div>{% endif %}
     {% endfor %}
     {% endfor %}
 </div>
