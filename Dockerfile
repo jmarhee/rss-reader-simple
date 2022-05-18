@@ -10,6 +10,7 @@ COPY app.py /app.py
 COPY parser.py /parser.py
 COPY templates/* /templates/
 COPY requirements.txt /requirements.txt
+COPY static/* /static/
 
 RUN pip install -r requirements.txt
 ENTRYPOINT python -m flask run --host=$HOST --port=$PORT
