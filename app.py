@@ -1,5 +1,5 @@
 from parser import buildFeed, buildConfig
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 import os
 from apscheduler.schedulers.background import BackgroundScheduler
  
@@ -31,6 +31,11 @@ def index():
 	else:
 		site_name = os.environ['SITE_NAME']
 	return render_template('index.html', feed_data=feed_data, site_name=site_name)
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 scheduler = BackgroundScheduler()
 job = scheduler.add_job(update_feeds, 'interval', minutes=1)
